@@ -11,10 +11,10 @@
         .credit-tag { position: absolute; top: 20px; right: 20px; font-size: 0.95rem; font-weight: bold; color: #00ffcc; letter-spacing: 0.5px; background-color: #16161a; padding: 6px 14px; border-radius: 6px; border: 1px solid #24242b; }
         h1 { margin-bottom: 15px; font-weight: 600; letter-spacing: 1px;}
         .games-section { width: 100%; max-width: 1200px; margin: 0 auto; }
-        .games-grid { display: grid; grid-template-columns: repeat(5, 570px); gap: 25px; width: max-content; max-width: 100%; align-items: start; }
-        .card { width: 546px; box-sizing: border-box; background-color: #16161a; border-radius: 12px; padding: 12px; text-align: center; cursor: pointer; transition: transform 0.2s, box-shadow 0.2s; border: 1px solid #24242b; min-width: 0; }
+        .games-grid { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 25px; width: 100%; align-items: start; }
+        .card { width: 100%; box-sizing: border-box; background-color: #16161a; border-radius: 12px; padding: 12px; text-align: center; cursor: pointer; transition: transform 0.2s, box-shadow 0.2s; border: 1px solid #24242b; min-width: 0; }
         .card:hover { transform: translateY(-5px); box-shadow: 0 8px 24px rgba(0, 255, 204, 0.25); border-color: #00ffcc; }
-        .card img { width: 546px; height: 307px; aspect-ratio: auto; object-fit: fill; border-radius: 8px; background-color: #010101; display: block; }
+        .card img { width: 100%; height: auto; aspect-ratio: 546 / 307; object-fit: fill; border-radius: 8px; background-color: #010101; display: block; }
         .card h3 { margin: 12px 0 3px 0; font-size: 1.05rem; font-weight: 600; color: #f0f0f0; }
         @media (max-width: 1800px) { .games-grid { grid-template-columns: repeat(3, 570px); } }
         @media (max-width: 1200px) { .games-grid { grid-template-columns: repeat(2, 570px); } }
