@@ -6,21 +6,112 @@
     <title>Chemistry4Fun</title>
     <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='0.9em' font-size='90'%3E%F0%9F%A7%AA%3C/text%3E%3C/svg%3E">
     <style>
-        body { font-family: 'Segoe UI', Arial, sans-serif; background-color: #0b0b0c; color: white; margin: 0; padding: 20px; display: flex; flex-direction: column; align-items: center; position: relative; }
-        .version-tag { position: absolute; top: 20px; left: 20px; font-size: 0.95rem; font-weight: bold; color: #ff3366; letter-spacing: 0.5px; background-color: #16161a; padding: 6px 14px; border-radius: 6px; border: 1px solid #24242b; }
-        .credit-tag { position: absolute; top: 20px; right: 20px; font-size: 0.95rem; font-weight: bold; color: #00ffcc; letter-spacing: 0.5px; background-color: #16161a; padding: 6px 14px; border-radius: 6px; border: 1px solid #24242b; }
-        h1 { margin-bottom: 15px; font-weight: 600; letter-spacing: 1px;}
-        .games-section { width: 100%; max-width: 1350px; margin: 0 auto; }
-        .games-grid { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 18px; width: 100%; align-items: start; }
-        .card { width: 100%; box-sizing: border-box; background-color: #16161a; border-radius: 12px; padding: 12px; text-align: center; cursor: pointer; transition: transform 0.2s, box-shadow 0.2s; border: 1px solid #24242b; min-width: 0; }
-        .card:hover { transform: translateY(-5px); box-shadow: 0 8px 24px rgba(0, 255, 204, 0.25); border-color: #00ffcc; }
-        .card img { width: 100%; height: auto; aspect-ratio: 546 / 307; object-fit: fill; border-radius: 8px; background-color: #010101; display: block; }
-        .card h3 { margin: 12px 0 3px 0; font-size: 1.05rem; font-weight: 600; color: #f0f0f0; }
-        @media (max-width: 1800px) { .games-grid { grid-template-columns: repeat(3, 570px); } }
-        @media (max-width: 1200px) { .games-grid { grid-template-columns: repeat(2, 570px); } }
-        @media (max-width: 600px) { .games-grid { grid-template-columns: 546px; } }
+        body {
+            font-family: 'Segoe UI', Arial, sans-serif;
+            background-color: #0b0b0c;
+            color: white;
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            position: relative;
+        }
+        .version-tag {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            font-size: 0.95rem;
+            font-weight: bold;
+            color: #ff3366;
+            letter-spacing: 0.5px;
+            background-color: #16161a;
+            padding: 6px 14px;
+            border-radius: 6px;
+            border: 1px solid #24242b;
+        }
+        .credit-tag {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            font-size: 0.95rem;
+            font-weight: bold;
+            color: #00ffcc;
+            letter-spacing: 0.5px;
+            background-color: #16161a;
+            padding: 6px 14px;
+            border-radius: 6px;
+            border: 1px solid #24242b;
+        }
+        h1 {
+            margin-bottom: 15px;
+            font-weight: 600;
+            letter-spacing: 1px;
+            margin-top: 60px; /* Added top margin so text doesn't overlap the absolute tags on smaller screens */
+        }
+        .games-section {
+            width: 100%;
+            max-width: 1350px;
+            margin: 0 auto;
+            box-sizing: border-box;
+            padding: 0 10px;
+        }
+        
+        /* FIXED: Changed to automatically fit columns based on screen width */
+        .games-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 18px;
+            width: 100%;
+            align-items: start;
+        }
+        
+        .card {
+            width: 100%;
+            box-sizing: border-box;
+            background-color: #16161a;
+            border-radius: 12px;
+            padding: 12px;
+            text-align: center;
+            cursor: pointer;
+            transition: transform 0.2s, box-shadow 0.2s;
+            border: 1px solid #24242b;
+            min-width: 0;
+        }
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 24px rgba(0, 255, 204, 0.25);
+            border-color: #00ffcc;
+        }
+        .card img {
+            width: 100%;
+            height: auto;
+            aspect-ratio: 546 / 307;
+            object-fit: fill;
+            border-radius: 8px;
+            background-color: #010101;
+            display: block;
+        }
+        .card h3 {
+            margin: 12px 0 3px 0;
+            font-size: 1.05rem;
+            font-weight: 600;
+            color: #f0f0f0;
+        }
+
+        /* FIXED: Replaced old hardcoded media queries with a simple tablet/mobile fix */
+        @media (max-width: 768px) {
+            .version-tag, .credit-tag {
+                position: static;
+                margin-bottom: 10px;
+            }
+            h1 {
+                margin-top: 15px;
+            }
+        }
     </style>
 </head>
+
 <body>
 
     <div class="version-tag">v1.10</div>
