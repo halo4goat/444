@@ -1350,35 +1350,39 @@
 
         // Password gate. This is a client-side access gate, not strong security.
         (function () {
-            const PASSWORD_HASH = '56dd3c1a83d4b388e6c43b8f1ce465e747edacc0c4faf8c4525be19bc0adc56d';
+            const PASSWORD = 'tungtung';
             const gate = document.getElementById('passwordGate');
             const input = document.getElementById('sitePassword');
             const button = document.getElementById('passwordSubmit');
             const error = document.getElementById('passwordError');
 
-            async function sha256(value) {
-                const data = new TextEncoder().encode(value);
-                const hash = await crypto.subtle.digest('SHA-256', data);
-                return Array.from(new Uint8Array(hash)).map(b => b.toString(16).padStart(2, '0')).join('');
-            }
-
-            async function unlock() {
-                if (!input.value) { error.textContent = 'Please enter the password.'; return; }
+            function unlock() {
+                const value = input.value.trim();
+                error.textContent = '';
+                if (!value) {
+                    error.textContent = 'Please enter a password.';
+                    input.focus();
+                    return;
+                }
                 button.disabled = true;
-                if (await sha256(input.value) === PASSWORD_HASH) {
+                button.textContent = 'Checking...';
+                if (value === PASSWORD) {
                     document.body.classList.remove('password-locked', 'site-locked');
                     gate.remove();
                 } else {
-                    error.textContent = 'Incorrect password.';
+                    error.textContent = 'Incorrect password. Try again.';
                     input.value = '';
                     input.focus();
                 }
                 button.disabled = false;
+                button.textContent = 'Enter';
             }
 
             document.body.classList.add('password-locked', 'site-locked');
+            input.value = '';
+            input.placeholder = 'Type the password here';
             button.addEventListener('click', unlock);
-            input.addEventListener('keydown', e => { if (e.key === 'Enter') unlock(); });
+            input.addEventListener('keydown', e => { if (e.key === 'Enter') { e.preventDefault(); unlock(); } });
         })();
 
         // Games / AI / Music hub
